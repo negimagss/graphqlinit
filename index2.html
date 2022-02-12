@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>My First Web Page</h2>
+<p>My First Paragraph.</p>
+
+<p id="demo"></p>
+
+<script>
+var result = '';
+fetch('http://localhost:8080/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    query: `
+    query {
+  queryUsers {
+    firstName
+    lastName
+    email
+  }
+} `,
+    variables: {
+      now: new Date().toISOString(),
+    },
+  }),
+})
+  .then((res) => res.json())
+  .then((result) => console.log(result));
+
+  document.getElementById("demo").innerHTML= result.data.queryUsers;
+</script>
+
+</body>
+</html>
