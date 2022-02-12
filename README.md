@@ -1,0 +1,3 @@
+# graphqlinit
+
+Practice Graph QL 
